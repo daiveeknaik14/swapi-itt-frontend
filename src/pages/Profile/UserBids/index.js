@@ -20,9 +20,10 @@ function UserBids() {
   const getData = async () => {
     try {
       dispatch(SetLoader(true));
-      const response = await GetAllBids({
+      let response = await GetAllBids({
         user: user._id,
       });
+      response = response.data.filter(item => item.product !== null);
       dispatch(SetLoader(false));
       if (response.success) {
         setBidsData(response.data);
