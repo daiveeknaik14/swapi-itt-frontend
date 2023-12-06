@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import UnprotectedPage from "./components/UnprotectedPage";
 import UserDetails from "./pages/Profile/UserProfiles";
+import Reset from "./pages/Reset";
 
 function App() {
   const { loading } = useSelector((state) => state.loaders);
@@ -60,6 +61,7 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/reset" element={<Reset />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

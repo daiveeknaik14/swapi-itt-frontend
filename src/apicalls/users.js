@@ -29,6 +29,25 @@ export const AddUser = async (values) => {
   }
 };
 
+export const UpdateUser = async (id, values) => {
+  try {
+    const response = await axiosInstance.patch(`/api/users/update-user/${id}`, values);
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+};
+
+export const ResetPassword = async (values) => {
+  try {
+    const response = await axiosInstance.post('/api/users/reset-password', values);
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+};
+
+
 
 // get current user
 export const GetCurrentUser = async () => {
