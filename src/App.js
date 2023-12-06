@@ -1,23 +1,67 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from "react-redux";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedPage from "./components/ProtectedPage";
+import Spinner from "./components/Spinner";
+import Admin from "./pages/Admin";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import ProductInfo from "./pages/ProductInfo";
+import Profile from "./pages/Profile";
+import Register from "./pages/Register";
+import UnprotectedPage from "./components/UnprotectedPage";
+import UserDetails from "./pages/Profile/UserProfiles";
 
 function App() {
+  const { loading } = useSelector((state) => state.loaders);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {loading && <Spinner />}
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <UnprotectedPage>
+                <Home />
+              </UnprotectedPage>
+            }
+          />
+          <Route
+            path="/product/:id"
+            element={
+              <UnprotectedPage>
+                <ProductInfo />
+              </UnprotectedPage>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedPage>
+                <Profile />
+              </ProtectedPage>
+            }
+          />
+          <Route
+            path="/profile/:id"
+            element={
+              <UnprotectedPage>
+                <UserDetails />
+              </UnprotectedPage>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedPage>
+                <Admin />
+              </ProtectedPage>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
