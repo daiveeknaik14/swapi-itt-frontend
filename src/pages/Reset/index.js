@@ -47,7 +47,7 @@ function Reset() {
     <div className="h-screen bg-primary flex justify-center items-center">
       <div className="bg-white p-5 rounded w-[450px]">
         <h1 className="text-primary text-2xl">
-          SWAPI-ITT - <span className="text-gray-400 text-2xl">RESET PASSWORD</span>
+          SWAP-ITT - <span className="text-gray-400 text-2xl">RESET PASSWORD</span>
         </h1>
         <Divider />
         <Form layout="vertical" onFinish={onFinish}>
